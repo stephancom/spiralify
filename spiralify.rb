@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-n = ARGV.shift.to_i rescue 1 # TODO rescue better
-
 class Spiralify
   # we describe the space of spiraled numbers as a hash of hashes
   # indexed by their displacement from the start position.  
@@ -91,17 +89,30 @@ class Spiralify
   end
   
   def print_spiral
-    puts "I should be outputting a spiral up to #{@n}"
-    puts spiralize.inspect
+    cols = @n.to_s.length + 1
+    spiralize.each do |row|
+      puts row.map { |i| "%#{cols}s" % i.to_s }.join
+    end
   end
 end
 
-unless n>0
-  puts "Please use a positive integer"
+def spiralize(n)
+  unless n>0
+    puts "Please use a positive integer"
+    return
+  end
+  
+  if Math.sqrt(n) % 1 != 0
+    puts "Please use a perfect square"
+    return
+  end
+  
+  spiralizer = Spiralify.new(n)
+
+  spiralizer.print_spiral
 end
 
-puts "Input: #{n}"
+n = ARGV.shift.to_i rescue 1 # TODO rescue better
 
-spiralizer = Spiralify.new(n)
+spiralize(n)
 
-spiralizer.print_spiral
