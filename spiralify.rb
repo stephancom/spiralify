@@ -98,7 +98,7 @@ class Spiralify
   # extra credit
   # http://stephan.com/blog/seive-of-erastothenes-in-ruby
   def primed_spiral
-    primes = [1] + (2..@n).inject((2..1000).to_a) {|res, i| res.select{|n|n==i||n%i!=0} }
+    primes = [1] + (2..@n).inject((2..@n).to_a) {|res, i| res.select{|n|n==i||n%i!=0} }
 
     cols = @n.to_s.length + 1
     spiralize.each do |row|
