@@ -18,7 +18,7 @@ class Spiralify
     def initialize(edge)
       @manifold   = {} # store this space as a hash of hashes
       @position   = {x: 0, y: 0} # current position
-      @direction  = :right
+      @direction  = INITIAL_DIRECTION
     end
     
     def is_empty?(position)
