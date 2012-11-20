@@ -94,6 +94,24 @@ class Spiralify
       puts row.map { |i| "%#{cols}s" % i.to_s }.join
     end
   end
+
+  # extra credit
+  # http://stephan.com/blog/seive-of-erastothenes-in-ruby
+  def primed_spiral
+    primes = [1] + (2..@n).inject((2..1000).to_a) {|res, i| res.select{|n|n==i||n%i!=0} }
+
+    cols = @n.to_s.length + 1
+    spiralize.each do |row|
+      puts row.map { |i| 
+        
+        if primes.include?(i)
+          "(%#{cols}s)" % i.to_s 
+        else
+          " %#{cols}s " % i.to_s 
+        end
+        }.join
+    end
+  end
 end
 
 def spiralize(n)
@@ -116,3 +134,5 @@ n = ARGV.shift.to_i rescue 1 # TODO rescue better
 
 spiralize(n)
 
+# extra credit
+# Spiralify.new(n).primed_spiral
