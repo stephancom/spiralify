@@ -43,7 +43,7 @@ class Spiralify
     end
     
     def turn
-      @direction = Field.next_direction(@direction) if turn_position_is_empty?
+      @direction = Field.next_direction(@direction)
     end
     
     def to_a
